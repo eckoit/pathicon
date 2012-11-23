@@ -1,4 +1,4 @@
-define(['text', 'raphael', 'require'], function(text, Raphael, require){
+define(['text', 'raphael-amd', 'require'], function(text, Raphael, require){
 
 	function to_svg(path_str, opts) {
 
@@ -42,7 +42,7 @@ define(['text', 'raphael', 'require'], function(text, Raphael, require){
 
         return {
             resource: resource,
-            opts : opts
+	            opts : opts
         };
     }
 
@@ -55,28 +55,20 @@ define(['text', 'raphael', 'require'], function(text, Raphael, require){
     	element.style.height = opts.height + 'px';
     }
 
-    var loadFile = function (name, parentRequire, callback) {
-        text.get(parentRequire.toUrl(name + '.path'), function(text) {
-            callback(text);
-        });
-    };
-
 
 	return {
-	    write: function (pluginName, moduleName, writeBuild) {
-
-	    },
-	    load: function (name, parentRequire, callback, config) {
-	    	var parsed = parse(name);	    
-	    	loadFile(parsed.resource, parentRequire, function(path_str){
-	    		var result = to_svg(path_str, parsed.opts);
+	    load: function (name, require, callback, config) {
+	    	var parsed = parse(name);
+            var text_url = 'text!' + parsed.resource + '.path';
+            require([text_url], function(path_str) {	    
 				if (config.isBuild) {
-
+					callback(null);
 				} else {
+					var result = to_svg(path_str, parsed.opts);
 					setElementSize(parsed.opts, result.box );
 					callback(result);
-				}	    		
-	    	})
+				}
+            });
 	    }
 	};
 });
