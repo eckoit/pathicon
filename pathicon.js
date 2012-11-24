@@ -1,6 +1,6 @@
-define(['text', 'raphael-amd', 'require'], function(text, Raphael, require){
+define(['text',  'require'], function(text, require){
 
-	function to_svg(path_str, opts) {
+	function to_svg(path_str, opts, cb) {
 
 		if (!opts.id) throw new Exception('please provide an id');
 		if (!opts.height)  opts.height = 32;
@@ -13,13 +13,15 @@ define(['text', 'raphael-amd', 'require'], function(text, Raphael, require){
 		
 		if (!opts.fill)    opts.fill  = '#000';
 
-		var result =  {};
-        result.paper = Raphael(opts.id, opts.width, opts.height);
-        result.path  = result.paper.path(path_str).attr({fill: opts.fill, stroke: "none"});
-        result.box   = result.path.getBBox();       			
+		require(['raphael-amd'], function(raphael) {
+			var result =  {};
+	        result.paper = Raphael(opts.id, opts.width, opts.height);
+	        result.path  = result.paper.path(path_str).attr({fill: opts.fill, stroke: "none"});
+	        result.box   = result.path.getBBox();       			
 
-		result.paper.setViewBox(result.box.x, result.box.y, result.box.width, result.box.height);	
-		return result;
+			result.paper.setViewBox(result.box.x, result.box.y, result.box.width, result.box.height);	
+			cb(null, result);
+		});
 	}
 
 
@@ -64,9 +66,10 @@ define(['text', 'raphael-amd', 'require'], function(text, Raphael, require){
 				if (config.isBuild) {
 					callback(null);
 				} else {
-					var result = to_svg(path_str, parsed.opts);
-					setElementSize(parsed.opts, result.box );
-					callback(result);
+					var result = to_svg(path_str, parsed.opts, function(err, result){
+						setElementSize(parsed.opts, result.box );
+						callback(result);
+					});
 				}
             });
 	    }
