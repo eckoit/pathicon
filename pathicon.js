@@ -13,7 +13,7 @@ define(['text',  'require'], function(text, require){
 		
 		if (!opts.fill)    opts.fill  = '#000';
 
-		require(['raphael-amd'], function(raphael) {
+		require(['raphael'], function(raphael) {
 			var result =  {};
 	        result.paper = Raphael(opts.id, opts.width, opts.height);
 	        result.path  = result.paper.path(path_str).attr({fill: opts.fill, stroke: "none"});

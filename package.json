@@ -1,6 +1,12 @@
 {
 	"name": "pathicon",
 	"version": "0.0.1",
-	"description": "Icons described by a path only. AMD loader for bundling and compression.",
-	"main": "pathicon.js"
+	"description": "Simple icons described by a svg path. AMD loader for bundling and compression.",
+	"main": "pathicon.js",
+    "jam": {
+      "dependencies": {
+        "raphael": "2.1.0",
+        "text": "2.0.2"
+      }
+    }
 }
