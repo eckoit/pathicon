@@ -7,7 +7,7 @@ Here is an example path:
 
     M2.379,14.729 5.208,11.899 12.958,19.648 25.877,6.733 28.707,9.561 12.958,25.308z
 
-This describes a [checkmark](http://raphaeljs.com/icons/#wrench3). Place the above in a file called ```img/checkmark.path```
+This describes a [checkmark](http://raphaeljs.com/icons/#check). Place the above in a file called img/checkmark.path
 
 Adding to a page
 ----------------
@@ -22,7 +22,7 @@ and then bind an icon to it using requirejs
 
 at this point you will have a 64x64 icon rendered filled #ccc! Simple.
 
-Want to do more? the ```icon``` variable is a raphael element that can be manipulated. Eg.
+Want to do more? the icon variable is a raphael element that can be manipulated. Eg.
 
     icon.glow()
 
@@ -48,7 +48,9 @@ Where Can I Get Paths?
 
 We are working on a svg->path tool, but in the meantime, you can do mostly by had pretty easy. Here are some good places for vector icons:
 
+  - [Raphael Icons](http://raphaeljs.com/icons)
   - [The Noun Project](http://thenounproject.com/)
+  - [IcoMoon](https://github.com/Keyamoon/IcoMoon--limited-/tree/master/Icons/SVG)
 
 Is this better than Font Icons?
 -------------------------------

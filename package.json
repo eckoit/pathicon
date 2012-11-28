@@ -8,5 +8,12 @@
         "raphael": "2.1.0",
         "text": "2.0.2"
       }
-    }
+    },
+    "repositories": [
+      {
+        "type": "git",
+        "url": "http://github.com/eckoit/pathicon.git"
+      }
+    ],
+    "github": "http://github.com/eckoit/pathicon"
 }
